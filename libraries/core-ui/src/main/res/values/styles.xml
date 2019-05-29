@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.App.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="progressBarStyleMedium">@style/Widget.App.ProgressBar.Medium</item>
+    </style>
+
+    <style name="Widget.App.ProgressBar.Medium" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:maxWidth">@dimen/common_progress_bar_size_medium</item>
+        <item name="android:maxHeight">@dimen/common_progress_bar_size_medium</item>
+        <item name="android:minWidth">@dimen/common_progress_bar_size_medium</item>
+        <item name="android:minHeight">@dimen/common_progress_bar_size_medium</item>
+    </style>
+
+</resources>

@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+
+    resolutionStrategy.eachPlugin {
+        if (requested.version == null) {
+            return
+        }
+        switch (requested.id.id) {
+            case "com.android.application":
+            case "com.android.library":
+                useModule "com.android.tools.build:gradle:$requested.version"
+                break
+        }
+    }
+}
+
+include ":libraries:core"
+include ":libraries:core-ui"
+include ":features:main"
+include ":app"

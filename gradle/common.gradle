@@ -1,0 +1,55 @@
+afterEvaluate {
+    if (plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")) {
+        android {
+            compileSdkVersion 28
+
+            defaultConfig {
+                minSdkVersion 21
+                targetSdkVersion 28
+
+                vectorDrawables.useSupportLibrary = true
+            }
+
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+
+            lintOptions {
+                warningsAsErrors true
+
+                textReport true
+                textOutput "stdout"
+                explainIssues false
+
+                disable "GradleDependency", "GoogleAppIndexingWarning"
+            }
+        }
+    }
+
+    if (plugins.hasPlugin("org.jetbrains.kotlin.android")) {
+        android {
+            sourceSets {
+                main.java.srcDirs += "src/main/kotlin"
+                debug.java.srcDirs += "src/debug/kotlin"
+                release.java.srcDirs += "src/release/kotlin"
+                test.java.srcDirs += "src/test/kotlin"
+            }
+        }
+    }
+
+    if (plugins.hasPlugin("org.jetbrains.kotlin.kapt")) {
+        kapt {
+            correctErrorTypes = true
+            useBuildCache = true
+        }
+    }
+
+    if (plugins.hasPlugin("org.jetbrains.kotlin.android.extensions")) {
+        androidExtensions {
+            experimental = true
+            features = ["parcelize"]
+            defaultCacheImplementation = "NONE"
+        }
+    }
+}

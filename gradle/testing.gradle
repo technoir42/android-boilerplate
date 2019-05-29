@@ -1,0 +1,25 @@
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$versions.junit.jupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$versions.junit.jupiter"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$versions.junit.jupiter"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$versions.junit.platform"
+
+    testImplementation "org.assertj:assertj-core:$versions.assertj"
+    testImplementation "org.mockito:mockito-inline:$versions.mockito"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
+}
+
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+
+            all {
+                useJUnitPlatform()
+
+                minHeapSize = "64m"
+                maxHeapSize = "128m"
+            }
+        }
+    }
+}

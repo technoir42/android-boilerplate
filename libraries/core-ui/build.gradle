@@ -1,0 +1,25 @@
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.kotlin.kapt"
+}
+
+dependencies {
+    implementation project(":libraries:core")
+    api "androidx.appcompat:appcompat:$versions.androidx.appcompat"
+    api "androidx.constraintlayout:constraintlayout:$versions.androidx.constraintLayout"
+    api "androidx.fragment:fragment:$versions.androidx.fragment"
+    api "androidx.fragment:fragment-ktx:$versions.androidx.fragment"
+    api "androidx.recyclerview:recyclerview:$versions.androidx.recyclerView"
+
+    api "com.google.android.material:material:$versions.materialComponents"
+    api "com.hannesdorfmann:adapterdelegates4:$versions.adapterDelegates"
+
+    api "com.sch.neon:neon:$versions.neon"
+    api "com.sch.neon:neon-timber:$versions.neon"
+
+    api "com.github.bumptech.glide:glide:$versions.glide"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+    kapt "com.github.bumptech.glide:glide:$versions.glide"
+}

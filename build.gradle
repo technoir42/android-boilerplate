@@ -1,0 +1,58 @@
+plugins {
+    id "com.android.library" version "3.4.2" apply false
+    id "com.android.application" version "3.4.2" apply false
+
+    id "org.jetbrains.kotlin.android" version "1.3.41" apply false
+    id "org.jetbrains.kotlin.kapt" version "1.3.41" apply false
+    id "org.jetbrains.kotlin.android.extensions" version "1.3.41" apply false
+
+    id "com.github.ben-manes.versions" version "0.21.0"
+    id "io.gitlab.arturbosch.detekt" version "1.0.0-RC16"
+}
+
+ext.buildConfig = [
+    versionName: "1.0",
+    versionCode: 1,
+
+    dbVersion  : 1
+]
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url "https://dl.bintray.com/sch/maven" }
+    }
+
+    apply from: "$rootDir/gradle/common.gradle"
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            freeCompilerArgs = ["-Xnew-inference"]
+
+            if (name.contains("Release")) {
+                allWarningsAsErrors = true
+                freeCompilerArgs += ["-Xno-call-assertions", "-Xno-param-assertions", "-Xno-receiver-assertions"]
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config = files("detekt.yml")
+    input = files(rootDir)
+    filters ".*/build/.*"
+}
+
+apply from: "gradle/versions.gradle"

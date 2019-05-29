@@ -1,0 +1,20 @@
+build:
+  maxIssues: 1
+
+complexity:
+  ComplexMethod:
+    ignoreSingleWhenExpression: true
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 160
+
+performance:
+  SpreadOperator:
+    active: false
+
+style:
+  ForbiddenComment:
+    active: false
+  MaxLineLength:
+    maxLineLength: 160
